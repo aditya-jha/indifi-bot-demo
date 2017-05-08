@@ -6,6 +6,7 @@ import {Router, Route, browserHistory} from "react-router";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import {Provider} from "react-redux";
 import configureStore from "./store";
+import App from "./components/AppComponent";
 
 require("style-loader!css-loader!./style.css");
 
@@ -14,6 +15,9 @@ require("style-loader!css-loader!./style.css");
 injectTapEventPlugin();
 
 const store = configureStore();
+
+const socket = require("socket.io-client")("http://localhost:4000");
+socket.on("message", msg => alert(msg));
 
 render(
     <Provider store={store}>
@@ -24,4 +28,3 @@ render(
     ,
     document.querySelector("#app")
 );
-

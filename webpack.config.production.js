@@ -6,6 +6,7 @@
 
 const AssetsPlugin = require("assets-webpack-plugin");
 const webpack = require("webpack");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const config = {
     devtool: "cheap-module-source-map",
@@ -35,6 +36,13 @@ const config = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin([
+            "./public/js"
+        ], {
+            verbose: true,
+            dry: false,
+            exclude: []
+        }),
         new AssetsPlugin({
             filename: "manifest.json",
             prettyPrint: true

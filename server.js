@@ -1,14 +1,17 @@
 "use strict";
 
+const http = require("http");
 const express = require("express");
-const io = require("socket.io")();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
 
 // create our app
 const app = express();
-app.io = io;
+
+// create server
+const server = http.createServer(app);
+const io = require("socket.io").listen(server);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -30,8 +33,14 @@ app.get("*", function (req, res) {
     });
 });
 
+
+io.on("connection", (client) => {
+    debugger;
+    client.emit("message", "Welcome");
+});
+
 const port = process.env.PORT || 4000;
 
-app.listen(port, function () {
-    console.log("listening on http://localhost:4000");
+server.listen(port, function () {
+    console.log("listening on http://localhost:" + port);
 });
