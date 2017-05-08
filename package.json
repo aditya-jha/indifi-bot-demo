@@ -10,8 +10,7 @@
     "productionBuild": "webpack --config webpack.config.production.js",
     "serve": "node server.js",
     "lint": "eslint src",
-    "production": "npm run lint & npm run productionBuild & npm run serve",
-    "start": "webpack -p && node server.js"
+    "start": "npm run lint && npm run productionBuild && npm run serve"
   },
   "author": "",
   "license": "MIT",

@@ -30,6 +30,8 @@ app.get("*", function (req, res) {
     });
 });
 
-app.listen(4000, function () {
+const port = process.env.PORT || 4000;
+
+app.listen(port, function () {
     console.log("listening on http://localhost:4000");
 });
