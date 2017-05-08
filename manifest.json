@@ -1,5 +1,8 @@
 {
   "main": {
-    "js": "./public/js/bundle-4b64deb87f9df62d628d.js"
+    "js": "./public/js/main-5d0d056a9daba68c3d93.js"
+  },
+  "vendor": {
+    "js": "./public/js/vendor-e92169de4b1a526e3099.js"
   }
 }
