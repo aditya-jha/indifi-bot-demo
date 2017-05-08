@@ -16,7 +16,8 @@ injectTapEventPlugin();
 
 const store = configureStore();
 
-const socket = require("socket.io-client")("http://localhost:4000");
+const connectionUrl = window.location.pathname.indexOf("localhost") > -1 ? "http://localhost:4000" : "https://indifi-bot-demo.herokuapp.com/";
+const socket = require("socket.io-client")(connectionUrl);
 socket.on("message", msg => alert(msg));
 
 render(
