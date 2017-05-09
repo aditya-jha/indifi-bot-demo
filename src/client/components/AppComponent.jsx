@@ -1,34 +1,45 @@
 "use strict";
 
-import React, {PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Row, Col} from "react-flexbox-grid";
+import InputMessage from "./InputMessage/component";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
-class AppComponent extends React.Component {
+class AppComponent extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
+
+        const styles = {
+            inputSectionStyle: {
+                backgroundColor: "#fff"
+            }
+        };
+
         return (
-            <h1>Bot Demo Test</h1>
+            <MuiThemeProvider>
+                <Row style={styles.inputSectionStyle}>
+                   <Col xs={12}>
+                       <InputMessage/>
+                   </Col>
+                </Row>
+            </MuiThemeProvider>
         );
     }
 }
 
-AppComponent.propTypes = {
-
-};
+AppComponent.propTypes = {};
 
 const mapStateToProps = (state) => {
-    return {
-
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);

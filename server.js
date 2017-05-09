@@ -1,11 +1,17 @@
 "use strict";
 
-const http = require("http");
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const path = require("path");
-const config = require("./config");
+require("babel-register");
+import http from "http";
+import express from "express";
+import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
+import path from "path";
+import config from "./config";
+import {
+    SOCKET_CONNECTION,
+    SOCKET_DISCONNECTION,
+    SOCKET_MESSAGE
+} from "./src/shared/socketContants";
 
 // create our app
 const app = express();
@@ -33,8 +39,16 @@ app.get("*", function (req, res) {
     });
 });
 
-io.on("connection", (client) => {
-    client.emit("message", "Welcome to Indifi Bot");
+io.on(SOCKET_CONNECTION, (client) => {
+    client.emit(SOCKET_MESSAGE, "Welcome to Indifi Bot");
+
+    client.on(SOCKET_DISCONNECTION, () => {
+        console.log("client disconnected from server");
+    });
+
+    client.on(SOCKET_MESSAGE, (message) => {
+        console.log("message from client", message);
+    });
 });
 
 server.listen(config.port, function () {

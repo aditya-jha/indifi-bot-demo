@@ -4,7 +4,6 @@
 
 "use strict";
 
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const path = require("path");
 
 const config = {
@@ -35,13 +34,6 @@ const config = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin([
-            "./public/js"
-        ], {
-            verbose: true,
-            dry: false,
-            exclude: []
-        })
     ]
 };
 
