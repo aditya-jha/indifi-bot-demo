@@ -7,7 +7,7 @@
 const manifest = require("./../manifest.json");
 
 const config = {
-    port: 4000
+    port: 8080
 };
 
 config.bundle = {
