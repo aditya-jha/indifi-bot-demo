@@ -1,6 +1,5 @@
 "use strict";
 
-require("babel-register");
 import http from "http";
 import express from "express";
 import cookieParser from "cookie-parser";
