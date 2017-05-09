@@ -5,6 +5,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
+const config = require("./config");
 
 // create our app
 const app = express();
@@ -25,22 +26,17 @@ app.set("view engine", "ejs");
 
 // send all requests to index so browserHistory in React Router works
 app.get("*", function (req, res) {
-    const manifest = require("./manifest.json");
-
+    const {main, vendor} = config.bundle.js;
     res.render("index", {
-        bundlePath: manifest.main.js.substring(8),
-        vendorPath: manifest.vendor.js.substring(8)
+        bundlePath: main,
+        vendorPath: vendor
     });
 });
 
-
 io.on("connection", (client) => {
-    debugger;
-    client.emit("message", "Welcome");
+    client.emit("message", "Welcome to Indifi Bot");
 });
 
-const port = process.env.PORT || 4000;
-
-server.listen(port, function () {
-    console.log("listening on http://localhost:" + port);
+server.listen(config.port, function () {
+    console.log("listening on http://localhost:" + config.port);
 });

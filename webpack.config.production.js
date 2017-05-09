@@ -7,13 +7,14 @@
 const AssetsPlugin = require("assets-webpack-plugin");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const path = require("path");
 
 const config = {
     devtool: "cheap-module-source-map",
     entry: "./src/client/app.jsx",
     output: {
-        path: __dirname,
-        filename: "./public/js/[name]-[chunkhash].js"
+        path: path.join(__dirname, "/public"),
+        filename: "./js/[name]-[chunkhash].js"
     },
     resolve: {
         extensions: [".js", ".jsx"]

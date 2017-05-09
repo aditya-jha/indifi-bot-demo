@@ -4,16 +4,15 @@
 
 "use strict";
 
-const AssetsPlugin = require("assets-webpack-plugin");
-const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const path = require("path");
 
 const config = {
     devtool: "cheap-module-source-map",
     entry: "./src/client/app.jsx",
     output: {
-        path: __dirname,
-        filename: "./public/js/[name]-[chunkhash].js"
+        path: path.join(__dirname, "/public"),
+        filename: "./js/bundle.js"
     },
     resolve: {
         extensions: [".js", ".jsx"]
@@ -42,17 +41,6 @@ const config = {
             verbose: true,
             dry: false,
             exclude: []
-        }),
-        new AssetsPlugin({
-            filename: "manifest.json",
-            prettyPrint: true
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "vendor",
-            minChunks: function (module) {
-                // this assumes your vendor imports exist in the node_modules directory
-                return module.context && module.context.indexOf("node_modules") !== -1;
-            }
         })
     ]
 };

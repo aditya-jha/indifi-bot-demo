@@ -5,12 +5,13 @@
   "main": "app.js",
   "scripts": {
     "test": "karma start",
-    "dev": "NODE_ENV=development & npm run devBuild & npm run serve",
-    "devBuild": "webpack -w",
-    "productionBuild": "webpack -p",
+    "dev": "npm run devBuild & npm run serve",
+    "devBuild": "webpack -w --display-error-details",
+    "productionBuild": "webpack -p --config webpack.config.production.js",
     "serve": "node server.js",
     "lint": "eslint src",
-    "start": "NODE_ENV=production && npm run productionBuild && npm run serve",
+    "prestart": "export NODE_ENV=production || set NODE_ENV=production && npm run productionBuild",
+    "start": "npm run serve",
     "postinstall": "npm run productionBuild"
   },
   "author": "",
@@ -52,7 +53,7 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^5.0.1",
     "script-loader": "^0.7.0",
-    "socketio": "^1.0.0",
+    "socket.io": "^2.0.1",
     "style-loader": "^0.16.1",
     "webpack": "^2.2.1"
   },
