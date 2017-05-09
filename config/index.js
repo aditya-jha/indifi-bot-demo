@@ -18,4 +18,6 @@ const config = {
 
 Object.assign(config, envConfig);
 
+config.port = process.env.PORT || config.port;
+
 module.exports = config;
