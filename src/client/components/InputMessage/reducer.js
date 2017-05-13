@@ -3,11 +3,13 @@
  */
 
 import {
-    UPDATE_INPUT_MESSAGE
+    UPDATE_INPUT_MESSAGE,
+    ADD_MESSAGE
 } from "./actions";
 
 const defaultState = {
-    message: ""
+    message: "",
+    messages: []
 };
 
 export function inputMessageReducer(state = defaultState, action) {
@@ -16,6 +18,14 @@ export function inputMessageReducer(state = defaultState, action) {
             return {
                 ...state,
                 message: action.message
+            };
+        case ADD_MESSAGE:
+            return {
+                ...state,
+                messages: [
+                    ...state.messages,
+                    action.message
+                ]
             };
         default:
             return state;

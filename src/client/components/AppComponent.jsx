@@ -3,9 +3,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Row, Col} from "react-flexbox-grid";
+import {Row, Col, Grid} from "react-flexbox-grid";
 import InputMessage from "./InputMessage/component";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import MessageDisplay from "./MessageDisplay/component";
 
 class AppComponent extends Component {
     constructor(props) {
@@ -13,6 +14,8 @@ class AppComponent extends Component {
     }
 
     render() {
+
+        const {messages} = this.props;
 
         const styles = {
             inputSectionStyle: {
@@ -22,20 +25,29 @@ class AppComponent extends Component {
 
         return (
             <MuiThemeProvider>
-                <Row style={styles.inputSectionStyle}>
-                   <Col xs={12}>
-                       <InputMessage/>
-                   </Col>
-                </Row>
+                <Grid>
+                    <Row className="content-wrapper">
+                        <Col xs={12}>
+                            <MessageDisplay messages={messages}/>
+                        </Col>
+                        <Col xs={12} style={styles.inputSectionStyle}>
+                            <InputMessage/>
+                        </Col>
+                    </Row>
+                </Grid>
             </MuiThemeProvider>
         );
     }
 }
 
-AppComponent.propTypes = {};
+AppComponent.propTypes = {
+    messages: PropTypes.array
+};
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        messages: state.inputMessage.messages
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
