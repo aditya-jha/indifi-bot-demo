@@ -33,13 +33,14 @@ class InputMessage extends Component {
     }
 
     render() {
-        const {message, onMessageChange, sendMessage} = this.props;
+        const {message, onMessageChange, sendMessage, onKeyUpHandler} = this.props;
 
         return (
             <Row className="input-message-wrapper">
                 <Col xs={8} sm={10}>
-                    <TextField name="message" placeholder="Whats on your mind?" value={message}
-                               fullWidth={true} multiLine={true} rowsMax={1} rows={1} onChange={onMessageChange}/>
+                    <TextField name="message" placeholder="Type here..." value={message}
+                               fullWidth={true} multiLine={false} rowsMax={1} rows={1} onChange={onMessageChange}
+                               onKeyUp={onKeyUpHandler}/>
                 </Col>
                 <Col xs={4} sm={2}>
                     <div className="icon-wrapper">
@@ -65,7 +66,8 @@ class InputMessage extends Component {
 InputMessage.propTypes = {
     message: PropTypes.string || PropTypes.number,
     onMessageChange: PropTypes.func,
-    sendMessage: PropTypes.func
+    sendMessage: PropTypes.func,
+    onKeyUpHandler: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -78,6 +80,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onMessageChange: (event, message) => {
             dispatch(updateInputMessage(message));
+        },
+
+        onKeyUpHandler: (event) => {
+            if (event.keyCode === 13) {
+                dispatch(sendInputMessage());
+            }
         },
 
         sendMessage: () => {

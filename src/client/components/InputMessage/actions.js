@@ -17,9 +17,12 @@ export function updateInputMessage(message) {
 
 export function sendInputMessage() {
     return (dispatch, getState) => {
-        debugger;
         // send message in state to server, through socket
         const {message} = getState().inputMessage;
+        if (!message) {
+            return;
+        }
         emitMessage(message);
+        dispatch(updateInputMessage(""));
     };
 }
