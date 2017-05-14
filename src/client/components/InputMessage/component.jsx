@@ -45,12 +45,12 @@ class InputMessage extends Component {
                 <Col xs={4} sm={2}>
                     <div className="icon-wrapper">
                         <Row>
-                            <Col xs>
+                            <Col xs={6}>
                                 <IconButton onClick={sendMessage}>
                                     <SendIcon/>
                                 </IconButton>
                             </Col>
-                            <Col xs>
+                            <Col xs={6}>
                                 <IconButton onClick={sendMessage}>
                                     <AttachIcon/>
                                 </IconButton>

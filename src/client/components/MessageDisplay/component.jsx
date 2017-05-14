@@ -7,13 +7,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Paper from "material-ui/Paper";
-import {Row, Col} from "react-flexbox-grid";
 
 const MessageDisplay = ({messages}) => {
     const styles = {
         wrapper: {
-            height: "100vh",
-            overflow: "auto"
+            maxheight: "20vh",
+            overflow: "auto",
+            maxWidth: "100vw"
         },
         userStyle: {
             marginTop: 10,
@@ -29,18 +29,25 @@ const MessageDisplay = ({messages}) => {
             marginBottom: 10,
             display: "inline-block",
             padding: 10
+        },
+        messageWrapper: {
+            display: "block",
+            width: "100%",
+            minHeight: 20,
+            marginTop: "0.7em"
         }
     };
 
     return (
-        <Row style={styles.wrapper}>
+        <div style={styles.wrapper}>
             {messages.map((message, index) => (
-                <Col xs={12} key={index.toString()}>
+                <div key={index.toString()} style={styles.messageWrapper}>
                     <Paper style={message.user === "agent" ? styles.agentStyle : styles.userStyle}>
                         {message.message}
                     </Paper>
-                </Col>))}
-        </Row>
+                </div>
+            ))}
+        </div>
     );
 };
 
