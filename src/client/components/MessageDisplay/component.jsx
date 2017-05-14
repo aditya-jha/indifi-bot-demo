@@ -11,38 +11,27 @@ import Paper from "material-ui/Paper";
 const MessageDisplay = ({messages}) => {
     const styles = {
         wrapper: {
-            maxheight: "20vh",
+            maxHeight: "90vh",
             overflow: "auto",
-            maxWidth: "100vw"
+            maxWidth: "100vw",
+            marginBottom: 10
         },
-        userStyle: {
-            marginTop: 10,
-            marginBottom: 10,
-            textAlign: "right",
-            display: "inline-block",
-            padding: 10,
-            float: "right"
-        },
-        agentStyle: {
-            left: 0,
+        messagePaper: {
             marginTop: 10,
             marginBottom: 10,
             display: "inline-block",
             padding: 10
         },
         messageWrapper: {
-            display: "block",
-            width: "100%",
-            minHeight: 20,
-            marginTop: "0.7em"
+            textAlign: "right"
         }
     };
 
     return (
         <div style={styles.wrapper}>
             {messages.map((message, index) => (
-                <div key={index.toString()} style={styles.messageWrapper}>
-                    <Paper style={message.user === "agent" ? styles.agentStyle : styles.userStyle}>
+                <div key={index.toString()} style={message.user === "user" ? styles.messageWrapper : {}}>
+                    <Paper style={styles.messagePaper}>
                         {message.message}
                     </Paper>
                 </div>
