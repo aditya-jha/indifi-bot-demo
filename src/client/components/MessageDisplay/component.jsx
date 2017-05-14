@@ -12,7 +12,7 @@ import {Row, Col} from "react-flexbox-grid";
 const MessageDisplay = ({messages}) => {
     const styles = {
         wrapper: {
-            height: "100%",
+            height: "100vh",
             overflow: "auto"
         },
         userStyle: {
