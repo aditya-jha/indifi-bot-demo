@@ -6,10 +6,12 @@
   "scripts": {
     "test": "karma start",
     "dev": "npm run devBuild & npm run serveDev",
+    "debug": "npm run devBuild & npm run serveDevDebug",
     "devBuild": "webpack -w --display-error-details",
     "productionBuild": "webpack -p --config webpack.config.production.js",
     "serve": "babel-node server.js",
     "serveDev": "babel-node server.js",
+    "serveDevDebug": "babel-node --inspect server.js",
     "lint": "eslint src",
     "prestart": "npm run productionBuild",
     "start": "export NODE_ENV=production || set NODE_ENV=production && npm run serve"

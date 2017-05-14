@@ -7,6 +7,8 @@ import {
     SOCKET_MESSAGE,
     SOCKET_CONNECTION
 } from "../../shared/socketContants";
+import {addMessage} from "./../components/InputMessage/actions";
+import store from "../store";
 
 let socket;
 
@@ -24,6 +26,13 @@ export function setUpListeners() {
     }
     socket.on(SOCKET_CONNECTION, (data) => {
         console.log(data);
+    });
+
+    socket.on(SOCKET_MESSAGE, (message) => {
+        store.dispatch(addMessage({
+            user: "agent",
+            message
+        }));
     });
 }
 

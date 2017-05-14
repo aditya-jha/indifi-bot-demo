@@ -9,7 +9,7 @@ const reducers = combineReducers({
     inputMessage: inputMessageReducer
 });
 
-export default function configureStore(initialState) {
+function configureStore(initialState) {
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     return createStore(
         reducers,
@@ -17,3 +17,7 @@ export default function configureStore(initialState) {
         composeEnhancers(applyMiddleware(thunk))
     );
 }
+
+const STORE = configureStore();
+
+export default STORE;

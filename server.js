@@ -11,6 +11,7 @@ import {
     SOCKET_DISCONNECTION,
     SOCKET_MESSAGE
 } from "./src/shared/socketContants";
+import APIAI from "./src/server/api.ai";
 
 // create our app
 const app = express();
@@ -47,6 +48,14 @@ io.on(SOCKET_CONNECTION, (client) => {
 
     client.on(SOCKET_MESSAGE, (message) => {
         console.log("message from client", message);
+        const instance = new APIAI(client.id);
+        instance.textRequest(message, {})
+            .then(function (response) {
+                client.emit(SOCKET_MESSAGE, response.result.fulfillment.speech);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     });
 });
 

@@ -6,7 +6,7 @@ import {Router, Route, browserHistory} from "react-router";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import {Provider} from "react-redux";
 import {connect, setUpListeners} from "./socket";
-import configureStore from "./store";
+import store from "./store";
 import App from "./components/AppComponent";
 
 require("style-loader!css-loader!./style.css");
@@ -15,7 +15,6 @@ require("style-loader!css-loader!./style.css");
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-const store = configureStore();
 connect();
 setUpListeners();
 
